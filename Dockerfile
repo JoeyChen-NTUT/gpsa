@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         libpng12-dev \
         libjpeg-dev \
-        libpng-dev
+        libpng-dev \
     && docker-php-ext-install iconv mcrypt \
     && docker-php-ext-configure gd \
         --enable-gd-native-ttf \
