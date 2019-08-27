@@ -22,10 +22,9 @@ RUN apt-get install -y \
   && docker-php-ext-install zip
 
 #install gd extensions
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
     libfreetype6-dev \
         libmcrypt-dev \
-        libpng12-dev \
         libjpeg-dev \
         libpng-dev \
     && docker-php-ext-install iconv mcrypt \
