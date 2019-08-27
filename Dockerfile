@@ -1,4 +1,7 @@
-FROM php:7.2-apache
+FROM php:7.3-apache
+
+RUN apt clean
+RUN apt update
 
 #modify php.ini for env require
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
