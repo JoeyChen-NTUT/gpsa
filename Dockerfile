@@ -2,6 +2,7 @@ FROM php:7.3-apache
 
 RUN apt clean
 RUN apt update
+RUN apt install -y apt-utils
 
 #modify php.ini for env require
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
@@ -12,7 +13,6 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
     sed -i -e 's/;date.timezone =/date.timezone = Asia\/Taipei/g' /usr/local/etc/php/php.ini && \
     sed -i -e 's/max_file_uploads = 20/max_file_uploads = 300/g' /usr/local/etc/php/php.ini && \
     sed -i -e 's/max_input_time = 60/max_input_time = 120/g' /usr/local/etc/php/php.ini && \
-    sed -i -e 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini
 
 #install zip extensions
 RUN apt-get install -y \
@@ -27,6 +27,7 @@ RUN apt-get install -y \
         libmcrypt-dev \
         libjpeg-dev \
         libpng-dev \
+        libmcrypt-dev \
     && docker-php-ext-install iconv mcrypt \
     && docker-php-ext-configure gd \
         --enable-gd-native-ttf \
@@ -36,9 +37,10 @@ RUN apt-get install -y \
     && docker-php-ext-install gd \
     && docker-php-ext-install mbstring \
     && docker-php-ext-enable gd
-
+   
 #install mysqli extensions
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN sed -i -e 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini
 
 #enable mods
 RUN a2enmod rewrite
