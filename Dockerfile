@@ -38,5 +38,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mbstring \
     && docker-php-ext-enable gd
 
+#install mysqli extensions
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
 #enable mods
 RUN a2enmod rewrite
