@@ -28,7 +28,6 @@ RUN apt-get install -y \
         libjpeg-dev \
         libpng-dev \
         libmcrypt-dev \
-    && docker-php-ext-install iconv mcrypt \
     && docker-php-ext-configure gd \
         --enable-gd-native-ttf \
         --with-freetype-dir=/usr/include/freetype2 \
