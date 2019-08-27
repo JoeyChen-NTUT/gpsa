@@ -36,5 +36,3 @@ RUN apt-get update && apt-get install -y \
 
 #enable mods
 RUN a2enmod rewrite
-
-/usr/local/etc/php
