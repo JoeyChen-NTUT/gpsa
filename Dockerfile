@@ -39,7 +39,7 @@ RUN apt-get install -y \
    
 #install mysqli extensions
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-RUN sed -i -e 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini
+#RUN sed -i -e 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini
 
 #enable mods
 RUN a2enmod rewrite
