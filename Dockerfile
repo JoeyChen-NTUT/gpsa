@@ -1,8 +1,8 @@
 FROM php:7.3-apache
 
-RUN apt clean
-RUN apt update
-RUN apt install -y apt-utils
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get install -y apt-utils
 
 #modify php.ini for env require
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
