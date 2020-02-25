@@ -1,7 +1,7 @@
 FROM php:7.3-apache
 
 RUN apt-get clean
-RUN apt-get update
+#RUN apt-get update
 RUN apt-get install -y apt-utils
 
 #modify php.ini for env require
