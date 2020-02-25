@@ -38,8 +38,7 @@ RUN apt-get install -y \
     && docker-php-ext-enable gd
    
 #install mysqli extensions
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-#RUN sed -i -e 's/;extension=mysqli/extension=mysqli/g' /usr/local/etc/php/php.ini
+RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo pdo_mysql
 
 #enable mods
 RUN a2enmod rewrite
