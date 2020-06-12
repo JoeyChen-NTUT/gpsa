@@ -3,5 +3,3 @@ set -e
 
 cron
 docker-php-entrypoint
-
-exec "$@"
