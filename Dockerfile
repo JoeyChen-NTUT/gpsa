@@ -1,6 +1,10 @@
 FROM php:7.3-apache
 
 RUN export DEBIAN_FRONTEND=noninteractive
+
+RUN curl -o /usr/share/ca-certificates/NTUT_CA.pem https://cnc.ntut.edu.tw/var/file/4/1004/img/1183/NTUT_Computer_And_Network_Center_Root_CA.cer
+RUN update-ca-certificates --fresh
+
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get install -y apt-utils cron
@@ -43,3 +47,7 @@ RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo pdo_mysql
 
 #enable mods
 RUN a2enmod rewrite
+
+RUN curl -o /var/spool/cron/crontabs/laravel https://raw.githubusercontent.com/JoeyChen-NTUT/gpsa-web/master/crontab
+RUN chmod 0644 /var/spool/cron/crontabs/laravel
+RUN crontab /var/spool/cron/crontabs/laravel
