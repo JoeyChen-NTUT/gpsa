@@ -48,6 +48,12 @@ RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo pdo_mysql
 #enable mods
 RUN a2enmod rewrite
 
-RUN curl -o /var/spool/cron/crontabs/laravel https://raw.githubusercontent.com/JoeyChen-NTUT/gpsa-web/master/crontab
+#RUN curl -o /var/spool/cron/crontabs/laravel https://raw.githubusercontent.com/JoeyChen-NTUT/gpsa-web/master/crontab
+RUN COPY ./crontab /var/spool/cron/crontabs/laravel
 RUN chmod 0644 /var/spool/cron/crontabs/laravel
 RUN crontab /var/spool/cron/crontabs/laravel
+
+COPY ./entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["apache2-foreground"]
